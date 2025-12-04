@@ -1,13 +1,9 @@
-import Security
+from app_files.Security import SystemControl
 import numpy as np
-import json
 import cv2
 
-with open('restricted_zones.json', 'r') as file:
-    data = json.load(file)
-    security_zones = [np.array(figure) for figure in data]
-
-Analyzator = Security.SystemControl(security_zones, 'yolo11n.pt')
+video_path = input('Enter video path: ')
+Analyzator = SystemControl('yolo11n.pt')
 
 cap = cv2.VideoCapture('test.mp4')
 writer = cv2.VideoWriter('detected_video.mp4', cv2.VideoWriter.fourcc(*'mp4v'), 20.0, (1024, 736))
